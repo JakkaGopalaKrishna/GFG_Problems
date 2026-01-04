@@ -15,4 +15,4 @@ class Solution {
       return;
     }
 };
-//GFG POTD solution for 02 January
+//GFG POTD solution for 04 January
