@@ -1,27 +1,25 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
-public:
+  public:
     int kBitFlips(vector<int>& arr, int k) {
+        // code here
         int n = arr.size();
-        vector<int> flipped(n, 0);  
-        int flip = 0;                
+        vector<int> diff(n, 0);
+        int currFlip = 0;
         int ans = 0;
-
-        for (int i = 0; i < n; i++) {
-            if (i >= k) {
-                flip ^= flipped[i - k]; 
+        for(int i = 0; i < n; i++) {
+            currFlip += diff[i];
+            int bit = arr[i];
+            if(currFlip % 2 == 1) {
+                bit ^= 1;
             }
-            if ((arr[i] ^ flip) == 0) { 
-                if (i + k > n) return -1; 
+            if(bit == 0) {
                 ans++;
-                flip ^= 1;          
-                flipped[i] = 1;     
+                currFlip++;
+                if(i + k > n)  return -1;
+                if(i + k < n)   diff[i + k] -= 1;
             }
         }
         return ans;
     }
 };
-
-//GFG POTD solution for 27 September
+//GFG POTD solution for 12 March
