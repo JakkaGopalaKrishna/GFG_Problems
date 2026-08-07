@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int dp[19];
+    int solve(int n){
+        if(n<=2) return n;
+        if(dp[n]!=-1) return dp[n];
+        return dp[n]=solve(n-1)+(n-1)*solve(n-2);
+    }
+    int countFriendsPairings(int n) {
+        // code here
+        memset(dp,-1,sizeof(dp));
+        return solve(n);
+    }
+};
+
+//GFG POTD solution for 07 August
